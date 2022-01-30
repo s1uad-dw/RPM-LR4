@@ -1,6 +1,12 @@
 import os
-
-
+def size(path,level=1, dict1 = {}):
+    for i in os.listdir(path):
+        if os.path.isdir(path+"/"+i):
+            size(path+"/"+i,level+1)
+        else:
+            dict1[path+"/"+ i]= os.stat(path+"/"+ i).st_size
+    return dict1
+gi
 def get_duplicates(d):
     result = {}
     for path, size in d.items():
@@ -11,19 +17,4 @@ def get_duplicates(d):
             result[(name, size)] = [path]
     return {k: v for k, v in result.items() if len(v) > 1}
 
-#print(get_duplicates({'C:\\Users\\Admin\\folder1\\file1.txt':'100 Кб',
-#   'C:\\Users\\Admin\\file1.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder2\\file1.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder3\\folder4\\file1.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder1\\file2.txt':'100 Кб',
-#   'C:\\Users\\Admin\\file2.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder2\\file2.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder3\\folder4\\file2.txt':'100 Кб',
-#   'C:\\Users\\Admin\\folder8\\file1.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder7\\file1.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder9\\file1.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder6\\folder4\\file1.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder7\\file3.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder9\\file4.txt':'109 Кб',
-#   'C:\\Users\\Admin\\folder6\\folder4\\file5.txt':'109 Кб',
-#  }))
+
