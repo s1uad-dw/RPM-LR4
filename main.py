@@ -1,4 +1,14 @@
 import os
+
+def f1 (age = (str(input("Укажите путь:")))):
+    while True:
+        if os.path.exists(age):
+            a = os.path.abspath(age)
+            print("Путь указан верно")
+            return os.path.abspath(age)
+        else:
+            print("Путь указан неверно")
+
 def size(path,level=1, dict1 = {}):
     for i in os.listdir(path):
         if os.path.isdir(path+"/"+i):
