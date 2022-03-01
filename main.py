@@ -9,7 +9,7 @@ def take_path ():
 def create_dictionary (path, dict1 = {}):
     for i in os.listdir(path):
         if os.path.isdir(path+"/"+i):
-            size(path+"/"+i,)
+            create_dictionary(path+"/"+i)
         else:
             dict1[path+"/"+ i]= os.stat(path+"/"+ i).st_size
     return dict1
