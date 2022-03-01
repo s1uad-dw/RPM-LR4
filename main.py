@@ -8,10 +8,13 @@ def take_path ():
 
 def create_dictionary (path, dict1 = {}):
     for i in os.listdir(path):
-        if os.path.isdir(path+"/"+i):
-            create_dictionary(path+"/"+i)
-        else:
-            dict1[path+"/"+ i]= os.stat(path+"/"+ i).st_size
+        try:
+            if os.path.isdir(path+"/"+i):
+                create_dictionary(path+"/"+i)
+            else:
+                dict1[path+"/"+ i]= os.stat(path+"/"+ i).st_size
+        except PermissionError:
+            print("Недостаточно прав. Попробуйте запустить программу от имени администратора или суперпользователя")
     return dict1
 
 def check_dictionary(d):
