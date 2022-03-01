@@ -1,23 +1,20 @@
 import os
 
-def f1 (age = (str(input("Укажите путь:")))):
+def take_path ():
     while True:
-        if os.path.exists(age):
-            a = os.path.abspath(age)
-            print("Путь указан верно")
-            return os.path.abspath(age)
-        else:
-            print("Путь указан неверно")
+        path = str(input('Введите путь: '))
+        if os.path.isdir(path):
+            return os.path.abspath(path)
 
-def size(path,level=1, dict1 = {}):
+def create_dictionary (path, dict1 = {}):
     for i in os.listdir(path):
         if os.path.isdir(path+"/"+i):
-            size(path+"/"+i,level+1)
+            size(path+"/"+i,)
         else:
             dict1[path+"/"+ i]= os.stat(path+"/"+ i).st_size
     return dict1
-gi
-def get_duplicates(d):
+
+def check_dictionary(d):
     result = {}
     for path, size in d.items():
         name = os.path.basename(path)
@@ -27,4 +24,14 @@ def get_duplicates(d):
             result[(name, size)] = [path]
     return {k: v for k, v in result.items() if len(v) > 1}
 
-
+def output(dublicates):
+    if len(dublicates)!=0:
+        print('Найдены повторяющиеся файлы:')
+        for filename in dublicates.keys():
+            print('\nФайл', filename, 'в директориях:')
+            for path in dublicates[filename]:
+                print(path)
+    else:
+        print('Повторяющиеся файлы не найдены')
+        
+output(check_dictionary(create_dictionary(take_path())))
