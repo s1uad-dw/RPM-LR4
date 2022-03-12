@@ -36,5 +36,6 @@ def output(dublicates):
                 print(path)
     else:
         print('Повторяющиеся файлы не найдены')
-        
-output(check_dictionary(create_dictionary(take_path())))
+
+if __name__ == '__main__':        
+    output(check_dictionary(create_dictionary(take_path())))
